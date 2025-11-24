@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
 </body>
 </html>
+<script>
+    let doC=function (C){
+        this.C=C;
+        this.setC=function(C){
+            this.C=C;
+        }
+        this.getC=function(){ return this.C; }
+        this.getF=function(){
+            return this.C*1.80+32;
+        }
+        this.getK=function(){
+            return this.C+273.15;
+        }
+    }
+    let c=new doC(25);
+    F=c.getF();
+    K=c.getK();
+    document.write("F="+F+"<br>"+"K="+K);
+</script>

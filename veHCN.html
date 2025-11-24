@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<canvas id="myCanvas" width="200" height="150" style="border:1px solid #d3d3d3;"></canvas>
 </body>
 </html>
+<script>
+    let HCN= function(x,y) {
+        this.x = x;
+        this.y = y;
+        this.setx = function (x) {
+            this.x = x;
+        }
+        this.sety = function (y) {
+            this.y = y;
+        }
+        this.getx = function () {
+            return this.x;
+        }
+        this.gety = function () {
+            return this.y;
+        }
+        this.getS = function () {
+            return this.x * this.y;
+        }
+        this.getC = function () {
+            return (this.x + this.y) * 2;
+        }
+    }
+        let hcn=new HCN(8,4);
+        hcn.setx(150);
+        hcn.sety(75);
+        let chieudai=hcn.getx();
+        let chieurong=hcn.gety();
+
+        let S=hcn.getS();
+        let C=hcn.getC();
+        alert("chieu dai= "+chieudai+" chieurong= "+chieurong+" chu vi= "+C+" dien tich= "+S);
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0,chieudai,chieurong);
+</script>

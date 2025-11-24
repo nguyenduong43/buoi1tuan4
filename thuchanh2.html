@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
 </body>
 </html>
+<script>
+    let Circle= function (r)
+    {
+        this.r=r;
+        this.getr=function(){
+            return this.r;
+        }
+        this.setr=function(r){
+            this.r=r;
+        }
+        this.getS=function ()
+        {
+            return this.r*this.r*3.14;
+        }
+    }
+    let circle=new Circle(2);
+    circle.setr(5);
+    let r=circle.getr();
+    let S=circle.getS();
+    alert("ban kinh "+r+" dien tich "+S);
+</script>

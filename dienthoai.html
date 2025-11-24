@@ -1,10 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Phone Chat</title>
 </head>
 <body>
-$END$
+<table border="1" cellpadding="10" cellspacing="10">
+    <tr>
+        <th>IPHONE</th>
+        <th>XIAOMI</th>
+    </tr>
+    <tr>
+        <td>Pin: <span id="pinIphone"></span></td>
+        <td>Pin: <span id="pinXiaomi"></span></td>
+    </tr>
+
+    <tr>
+        <td><textarea id="gui" rows="4" cols="40" placeholder="Soạn tin nhắn iPhone..."></textarea></td>
+        <td><textarea id="gui1" rows="4" cols="40" placeholder="Soạn tin nhắn Xiaomi..."></textarea></td>
+    </tr>
+
+    <tr>
+        <td><textarea id="nhan" rows="4" cols="40" placeholder="Tin nhận được" readonly></textarea></td>
+        <td><textarea id="nhan1" rows="4" cols="40" placeholder="Tin nhận được" readonly></textarea></td>
+    </tr>
+
+    <tr>
+        <td><textarea id="dagui" rows="4" cols="40" placeholder="Tin đã gửi" readonly></textarea></td>
+        <td><textarea id="dagui1" rows="4" cols="40" placeholder="Tin đã gửi" readonly></textarea></td>
+    </tr>
+    <tr>
+        <td><button onclick="sendFromIphone()">Send</button></td>
+        <td><button onclick="sendFromXiaomi()">Send</button>
+        </td>
+    </tr>
+</table>
+
+
 </body>
 </html>
+
+<script>
+    // Đối tượng IPHONE
+    let IPHONE = function(pin) {
+        this.pin = pin;
+        this.vungnho = { gui: "", den: "", dagui: "" };
+
+        this.giamPin = function() {
+            if (this.pin > 0) this.pin--;
+        };
+    };
+
+    // Đối tượng ANDROID
+    let ANDROID = function(pin) {
+        this.pin = pin;
+        this.vungnho = { gui: "", den: "", dagui: "" };
+
+        this.giamPin = function() {
+            if (this.pin > 0) this.pin--;
+        };
+    };
+
+    let ip = new IPHONE(100);
+    let adr = new ANDROID(100);
+
+    function capNhatPin() {
+        document.getElementById("pinIphone").innerText = ip.pin;
+        document.getElementById("pinXiaomi").innerText = adr.pin;
+    }
+
+    function sendFromIphone() {
+        if (ip.pin <= 0) {
+            document.getElementById("pinIphone").innerHTML=("0%.Dang tat");
+            return;
+        }
+
+        let text = document.getElementById("gui").value;
+        if (text.trim() === "") return;
+        document.getElementById("pinIphone").innerHTML=+adr.pin+"% Dang bat";
+        ip.giamPin();
+        capNhatPin();
+
+        adr.vungnho.den = text;
+        ip.vungnho.gui = text;
+
+        document.getElementById("nhan1").value += text + "\n";
+        document.getElementById("dagui").value += text + "\n";
+        document.getElementById("gui").value = "";
+    }
+
+    function sendFromXiaomi() {
+        if (adr.pin <= 0) {
+            document.getElementById("pinXiaomi").innerHTML=("0%.Dang tat");
+            return;
+        }
+
+        let text = document.getElementById("gui1").value;
+        if (text.trim() === "") return;
+        document.getElementById("pinXiaomi").innerHTML=+adr.pin+"% Dang bat";
+        adr.giamPin();
+        capNhatPin();
+
+        ip.vungnho.den = text;
+        adr.vungnho.gui = text;
+
+        document.getElementById("nhan").value += text + "\n";
+        document.getElementById("dagui1").value += text + "\n";
+        document.getElementById("gui1").value = "";
+    }
+
+    capNhatPin();
+</script>
